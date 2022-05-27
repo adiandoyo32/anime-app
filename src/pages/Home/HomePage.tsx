@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { GET_ANIME_LIST } from "../graphql/Queries";
-import Anime from "../models/Anime";
-import Page from "../models/Page";
+import { GET_ANIME_LIST } from "../../graphql/Queries";
+import Anime from "../../models/Anime";
+import Page from "../../models/Page";
+import AnimeList from "./components/AnimeList";
 
 const HomePage = () => {
     const { error, loading, data } = useQuery<Page<Anime>>(GET_ANIME_LIST);
@@ -14,13 +15,13 @@ const HomePage = () => {
         }
     }, [data]);
 
-    if (loading) return <div>Loading...</div>
-    if (error || !data) return <div>Error</div>
+    if (loading) return <div>Loading...</div>;
+    if (error || !data) return <div>Error</div>;
 
     return (
         <div>
-            <h3>Anime List</h3>
-            {animeList.map((anime, index) => <div key={index}>{anime.title.english}</div>)}
+            <p>Anime List</p>
+            <AnimeList animeList={animeList} />
         </div>
     );
 };

@@ -18,8 +18,14 @@ export const GET_ANIME_LIST = gql`
                     native
                     userPreferred
                 }
-                type
                 genres
+                season
+                averageScore
+                coverImage {
+                    color
+                    medium
+                    large
+                }
             }
         }
     }

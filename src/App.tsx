@@ -1,27 +1,23 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import HomePage from "./pages/HomePage";
-// import {
-//   ApolloClient,
-//   InMemoryCache,
-//   ApolloProvider,
-//   useQuery,
-//   gql
-// } from "@apollo/client";
+import HomePage from "./pages/Home/HomePage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AnimeDetailPage from "./pages/AnimeDetail/AnimeDetailPage";
 
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: "https://graphql.anilist.co",
+    cache: new InMemoryCache(),
+    uri: "https://graphql.anilist.co",
 });
 
 function App() {
     return (
         <ApolloProvider client={client}>
-            <div className="App">
-                <HomePage />
-            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/anime/:id" element={<AnimeDetailPage />} />
+                </Routes>
+            </BrowserRouter>
         </ApolloProvider>
     );
 }

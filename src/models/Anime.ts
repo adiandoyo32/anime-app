@@ -6,5 +6,12 @@ export default interface Anime {
         romaji: string;
         userPreferred: string;
     };
-    type: string;
+    genres: string;
+    season: string;
+    averageScore: number;
+    coverImage: {
+        color: string;
+        medium: string;
+        large: string;
+    }
 }
