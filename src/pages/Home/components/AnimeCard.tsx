@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Anime from "../../../models/Anime";
 
 const Card = styled.div`
@@ -51,8 +52,13 @@ interface AnimeCardProps {
 }
 
 const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
+    const navigate = useNavigate()
+    const handleClick = (anime: Anime) => {
+        navigate(`/anime/${anime.id}`)
+    };
+
     return (
-        <Card>
+        <Card onClick={() => handleClick(anime)}>
             <CardImage src={anime.coverImage.large} />
             <CardContent>
                 <CardTitle>{anime.title.userPreferred}</CardTitle>
@@ -62,12 +68,14 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
                         align-items: center;
                     `}
                 >
-                    <StarIcon css={css`
-                        height: 1rem;
-                        width: 1rem;
-                        color: #ffc400;
-                        margin-right: 0.2rem;
-                    `} />
+                    <StarIcon
+                        css={css`
+                            height: 1rem;
+                            width: 1rem;
+                            color: #ffc400;
+                            margin-right: 0.2rem;
+                        `}
+                    />
                     <Rate>
                         <p>{anime.averageScore}</p>
                     </Rate>

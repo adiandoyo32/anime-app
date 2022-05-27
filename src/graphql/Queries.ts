@@ -32,8 +32,8 @@ export const GET_ANIME_LIST = gql`
 `;
 
 export const GET_ANIME = gql`
-    query {
-        Media(search: "shingeki", type: ANIME, sort: POPULARITY_DESC) {
+    query AnimeDetail ($id: Int) {
+        Media(id: $id, type: ANIME) {
             id
             title {
                 romaji
