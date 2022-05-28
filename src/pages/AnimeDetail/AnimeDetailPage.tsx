@@ -28,22 +28,6 @@ const AnimeDetailPage = () => {
         }
     }, [data]);
 
-    // const Button = styled.button`
-    //     padding: 0.75rem 1.25rem;
-    //     display: flex;
-    //     algin-items: center;
-    //     justify-content: center;
-    //     border-radius: 0.375rem;
-    //     color: white;
-    //     background: #3b82f6;
-    //     border: 0;
-    //     transition-duration: 200ms;
-    //     &:hover {
-    //         cursor: pointer;
-    //         background: #2563eb;
-    //     }
-    // `;
-
     if (loading) return <div>Loading...</div>;
     if (error || !data) return <div>Error</div>;
     if (anime === null) return <div>Anime not found</div>;

@@ -146,9 +146,9 @@ const Modal: React.FC<ModalInterface> = ({ onIsShowModalChange }) => {
                             /> */}
                         </FormGroup>
 
-                        {/* <FormGroup>
+                        <FormGroup>
                             <SubmitButton type="submit">Submit</SubmitButton>
-                        </FormGroup> */}
+                        </FormGroup>
                     </Form>
                 </ModalBody>
             </ModalContainer>

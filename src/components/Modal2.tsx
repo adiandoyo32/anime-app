@@ -1,6 +1,11 @@
-import styled from "@emotion/styled";
+/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { ModalBase, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalTitle } from "../styles/Modal";
+import IconButton from "./IconButton";
+import { XIcon } from "@heroicons/react/solid";
+import { css } from "@emotion/react";
+import Button from "./Button";
 
 interface ModalProps {
     show: boolean;
@@ -8,27 +13,6 @@ interface ModalProps {
     title: string;
     children?: React.ReactNode;
 }
-
-const ModalBase = styled.div`
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    z-index: 50;
-`;
-
-const ModalContainer = styled.div`
-    background-color: #fff;
-    width: 50%;
-    height: 50%;
-    border-radius: 0.375rem;
-    padding: 2.5rem;
-`;
 
 const Modal2: React.FC<ModalProps> = ({ show, close, title, children }) => {
     const [collectionName, setCollectionName] = useState<string>("");
@@ -43,26 +27,40 @@ const Modal2: React.FC<ModalProps> = ({ show, close, title, children }) => {
     return ReactDOM.createPortal(
         <>
             <ModalBase className="modalContainer" onClick={() => close()}>
-                <ModalContainer className="modal" onClick={(e) => e.stopPropagation()}>
-                    <header className="modal_header">
-                        <h2 className="modal_header-title"> {title} </h2>
-                        <button className="close" onClick={() => close()}>
-                            close
-                        </button>
-                    </header>
-                    <main className="modal_content">
-                        {" "}
+                <ModalContent className="modal" onClick={(e) => e.stopPropagation()}>
+                    <ModalHeader>
+                        <ModalTitle> {title} </ModalTitle>
+                        <IconButton onClick={() => close()}>
+                            <XIcon
+                                css={css`
+                                    color: black;
+                                    width: 1rem;
+                                    height: 1rem;
+                                `}
+                            />
+                        </IconButton>
+                    </ModalHeader>
+                    <ModalBody>
                         {children}
                         <input type="text" value={collectionName} onChange={onChange} />{" "}
-                    </main>
-                    <footer className="modal_footer">
-                        <button className="modal-close" onClick={() => close()}>
+                        <input type="text" value={collectionName} onChange={onChange} />{" "}
+                        <input type="text" value={collectionName} onChange={onChange} />{" "}
+                        <input type="text" value={collectionName} onChange={onChange} />{" "}
+                        <input type="text" value={collectionName} onChange={onChange} />{" "}
+                        <input type="text" value={collectionName} onChange={onChange} />{" "}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+                            css={css`
+                                margin-right: 1px;
+                            `}
+                            onClick={() => close()}
+                        >
                             Cancel
-                        </button>
-
-                        <button className="submit">Submit</button>
-                    </footer>
-                </ModalContainer>
+                        </Button>
+                        <Button>Submit</Button>
+                    </ModalFooter>
+                </ModalContent>
             </ModalBase>
         </>,
         document.body
