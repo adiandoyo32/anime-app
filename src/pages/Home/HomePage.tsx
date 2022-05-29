@@ -20,7 +20,6 @@ const HomePage = () => {
 
     return (
         <div>
-            <p>Anime List</p>
             <AnimeList animeList={animeList} />
         </div>
     );

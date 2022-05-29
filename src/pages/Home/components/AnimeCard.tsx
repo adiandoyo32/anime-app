@@ -1,65 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Anime from "../../../models/Anime";
-
-const Card = styled.div`
-    width: 100%;
-    overflow: hidden;
-    display: flex
-    flex-direction: column;
-    cursor: pointer;
-`;
-
-const CardImage = styled.img`
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-radius: 0.4rem;
-`;
-
-const CardContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0.5rem;
-`;
-
-const CardTitle = styled.p`
-    font-size: 1rem;
-    font-weight: bold;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: pre-wrap;
-    word-break: break-all;
-    margin-bottom: 0.3rem;
-`;
-
-const Rate = styled.span`
-    font-size: 0.85rem;
-    color: #ffc400;
-    margin-bottom: 0.2rem;
-    font-weight: 500;
-`;
+import { Card, CardContent, CardImage, CardPoster, CardTitle, Rate } from "../styles/AnimeCard";
 
 interface AnimeCardProps {
     anime: Anime;
 }
 
 const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleClick = (anime: Anime) => {
-        navigate(`/anime/${anime.id}`)
+        navigate(`/anime/${anime.id}`);
     };
 
     return (
         <Card onClick={() => handleClick(anime)}>
-            <CardImage src={anime.coverImage.large} />
+            <CardPoster>
+                <CardImage src={anime.coverImage.large} />
+            </CardPoster>
             <CardContent>
                 <CardTitle>{anime.title.userPreferred}</CardTitle>
                 <div
