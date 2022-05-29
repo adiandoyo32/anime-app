@@ -17,12 +17,12 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
     };
 
     return (
-        <Card onClick={() => handleClick(anime)}>
-            <CardPoster>
+        <Card>
+            <CardPoster onClick={() => handleClick(anime)}>
                 <CardImage src={anime.coverImage.large} />
             </CardPoster>
             <CardContent>
-                <CardTitle>{anime.title.userPreferred}</CardTitle>
+                <CardTitle onClick={() => handleClick(anime)}>{anime.title.userPreferred}</CardTitle>
                 <div
                     css={css`
                         display: flex;

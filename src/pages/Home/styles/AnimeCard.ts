@@ -31,6 +31,7 @@ export const CardContent = styled.div`
 `;
 
 export const CardTitle = styled.p`
+    width: max-content;
     font-size: 1rem;
     font-weight: bold;
     display: -webkit-box;
@@ -41,6 +42,7 @@ export const CardTitle = styled.p`
     white-space: pre-wrap;
     word-break: break-all;
     margin-bottom: 0.3rem;
+    cursor: pointer;
 `;
 
 export const Rate = styled.span`
