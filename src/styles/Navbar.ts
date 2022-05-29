@@ -6,7 +6,7 @@ export const NavbarHeader = styled.header`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 30;
 `;
 
 export const NavbarContent = styled.div`

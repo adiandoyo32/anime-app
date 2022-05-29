@@ -32,15 +32,32 @@ export const GET_ANIME_LIST = gql`
 `;
 
 export const GET_ANIME = gql`
-    query AnimeDetail ($id: Int) {
+    query AnimeDetail($id: Int) {
         Media(id: $id, type: ANIME) {
             id
+            description
+            startDate {
+                year
+                month
+                day
+            }
+            endDate {
+                year
+                month
+                day
+            }
             title {
                 romaji
                 english
                 native
                 userPreferred
             }
+            coverImage {
+                color
+                medium
+                large
+            }
+            bannerImage
         }
     }
 `;

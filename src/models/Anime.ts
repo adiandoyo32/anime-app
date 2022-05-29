@@ -6,6 +6,7 @@ export default interface Anime {
         romaji: string;
         userPreferred: string;
     };
+    description: string;
     genres: string;
     season: string;
     averageScore: number;
@@ -14,4 +15,5 @@ export default interface Anime {
         medium: string;
         large: string;
     }
+    bannerImage: string;
 }

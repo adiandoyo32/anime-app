@@ -1,4 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import { useQuery } from "@apollo/client";
+import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
@@ -9,6 +11,10 @@ import { GET_ANIME } from "../../graphql/Queries";
 import { useModal } from "../../hooks/useModal";
 import Anime from "../../models/Anime";
 import Collection from "../../models/Collection";
+import Banner from "./components/Banner";
+import BannerImage from "./components/BannerImage";
+import CoverImage from "./components/CoverImage";
+import Description from "./components/Description";
 
 const AnimeDetailPage = () => {
     const { id } = useParams();
@@ -29,7 +35,6 @@ const AnimeDetailPage = () => {
 
     useEffect(() => {
         if (anime) resolveCollectionInfo(anime);
-        console.log(storedCollection);
     }, [collections, anime]);
 
     if (loading) return <div>Loading...</div>;
@@ -71,7 +76,35 @@ const AnimeDetailPage = () => {
 
     return (
         <>
-            <h1>{anime.title.romaji}</h1>
+            {/* <Banner>
+                <BannerImage src={anime.bannerImage} />
+            </Banner> */}
+
+            <div
+                className=""
+                css={css`
+                    display: flex;
+                    // grid-gap: 1rem;
+                    // @media (min-width: 560px) {
+                    //     grid-template-columns: repeat(2, max-content);
+                    // }
+                `}
+            >
+                <CoverImage imageUrl={anime.coverImage.large} />
+                <div
+                    css={css`
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        border: 1px solid black;
+                        padding: 1rem;
+                    `}
+                >
+                    <h3>{anime.title.romaji}</h3>
+                    <Description>{anime.description}</Description>
+                </div>
+            </div>
+
             <div>
                 <Button onClick={toggle}>Add to Collection</Button>
                 <Modal2 show={visible} close={toggle} title="Add to Collection">
