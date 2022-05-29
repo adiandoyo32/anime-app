@@ -42,12 +42,6 @@ const Modal2: React.FC<ModalProps> = ({ show, close, title, children }) => {
                     </ModalHeader>
                     <ModalBody>
                         {children}
-                        <input type="text" value={collectionName} onChange={onChange} />{" "}
-                        <input type="text" value={collectionName} onChange={onChange} />{" "}
-                        <input type="text" value={collectionName} onChange={onChange} />{" "}
-                        <input type="text" value={collectionName} onChange={onChange} />{" "}
-                        <input type="text" value={collectionName} onChange={onChange} />{" "}
-                        <input type="text" value={collectionName} onChange={onChange} />{" "}
                     </ModalBody>
                     <ModalFooter>
                         <Button
