@@ -5,6 +5,10 @@ import Navbar from "./Navbar";
 const Main = styled.main`
     margin-top: 4rem;
     padding: 1.5rem;
+    // @media (min-width: 1091px) {
+    //     margin: auto;
+    //     max-width: 64rem;
+    // }
 `;
 
 const Layout = () => {

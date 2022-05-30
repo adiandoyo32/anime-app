@@ -16,6 +16,9 @@ const CollectionGrid = styled.div`
     @media (min-width: 380px) {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+    // @media (min-width: 60px) {
+    //     grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    // }
 `;
 
 const CollectionPage = () => {

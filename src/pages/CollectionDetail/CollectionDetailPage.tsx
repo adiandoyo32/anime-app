@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { TrashIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import IconButton from "../../components/IconButton";
 import { useCollectionContext } from "../../context/CollectionContext";
 import Collection from "../../models/Collection";
+import { AnimeListGrid } from "./components/AnimeListGrid";
+import AnimeListItem from "./components/AnimeListItem";
 
 const CollectionDetailPage = () => {
     const { name } = useParams();
@@ -26,7 +26,7 @@ const CollectionDetailPage = () => {
         if (collection) {
             updateCollectionByIndex(collectionIndex, collection);
         }
-    }, [collection])
+    }, [collection]);
 
     if (!collection) return <h3>Collection not found</h3>;
 
@@ -37,31 +37,22 @@ const CollectionDetailPage = () => {
             ...state!,
             animes: arr,
         }));
-        // updateCollectionByIndex(collectionIndex, collection);
-    }
+    };
 
     return (
         <>
-            <h3>Collection Detail</h3>
-            <h3>name: {collection.name}</h3>
-            <h3>index: {collectionIndex}</h3>
-            <h3>Anime List</h3>
-            {collection.animes.map((anime, index) => {
-                return (
-                    <div key={index}>
-                        <h5>{anime.title.romaji}</h5>
-                        <IconButton onClick={() => removeAnime(index)}>
-                            <TrashIcon
-                                css={css`
-                                    color: red;
-                                    width: 1rem;
-                                    height: 1rem;
-                                `}
-                            />
-                        </IconButton>
-                    </div>
-                );
-            })}
+            <h3
+                css={css`
+                    margin-bottom: 0.5rem;
+                `}
+            >
+                {collection.name}
+            </h3>
+            <AnimeListGrid>
+                {collection.animes.map((anime, index) => {
+                    return <AnimeListItem key={index} anime={anime} animeIndex={index} removeAnime={removeAnime} />;
+                })}
+            </AnimeListGrid>
         </>
     );
 };
