@@ -4,6 +4,7 @@ import { GET_ANIME_LIST } from "../../graphql/Queries";
 import Anime from "../../models/Anime";
 import Page from "../../models/Page";
 import AnimeList from "./components/AnimeList";
+import HomeWrapper from "./components/HomeWrapper";
 
 const HomePage = () => {
     const { error, loading, data } = useQuery<Page<Anime>>(GET_ANIME_LIST);
@@ -19,9 +20,9 @@ const HomePage = () => {
     if (error || !data) return <div>Error</div>;
 
     return (
-        <div>
+        <HomeWrapper>
             <AnimeList animeList={animeList} />
-        </div>
+        </HomeWrapper>
     );
 };
 

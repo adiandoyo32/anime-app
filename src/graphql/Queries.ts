@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_ANIME_LIST = gql`
     query AnimeList {
-        Page(page: 1, perPage: 10) {
+        Page(page: 2, perPage: 10) {
             pageInfo {
                 total
                 perPage
@@ -58,6 +58,13 @@ export const GET_ANIME = gql`
                 large
             }
             bannerImage
+            averageScore
+            seasonYear
+            status
+            duration
+            episodes
+            genres
+            season
         }
     }
 `;
