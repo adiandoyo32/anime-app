@@ -16,7 +16,6 @@ const resolveColor = (color?: string) => {
     }
 };
 
-
 const resolveSize = (size?: string) => {
     switch (size) {
         case "large":

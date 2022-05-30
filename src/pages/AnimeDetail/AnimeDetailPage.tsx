@@ -31,7 +31,7 @@ const AnimeDetailPage = () => {
   const { collections, saveAnimeToCollection } = useCollectionContext();
   const [anime, setAnime] = useState<Anime | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<string[]>([]);
-  const [storedCollection, setStoredCollection] = useState<string[]>([]);
+  const [storedCollection, setStoredCollection] = useState<Collection[]>([]);
   const { visible, toggle } = useModal();
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const AnimeDetailPage = () => {
       collection.animes.forEach((item) => {
         if (item.id === anime.id) {
           setSelectedCollection((state) => [...state, collection.name]);
-          setStoredCollection((state) => [...state, collection.name]);
+          setStoredCollection((state) => [...state, collection]);
         }
       });
     });
@@ -156,10 +156,10 @@ const AnimeDetailPage = () => {
           margin-top: 1rem;
         `}
       >
-        <h4>Collection info</h4>
-        {storedCollection.map((collection) => {
-          return <CollectionCard key={collection} collection={collection} />;
-        })}
+        <h3>Collection info</h3>
+        { storedCollection.length > 0 ? storedCollection.map((collection, index) => {
+          return <CollectionCard key={index} collection={collection} />;
+        }) : <div>No collection found</div>}
       </div>
 
       <div>

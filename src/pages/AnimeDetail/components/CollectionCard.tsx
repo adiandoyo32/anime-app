@@ -1,52 +1,72 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
 import { PlaceHolder } from "../../../images";
+import Collection from "../../../models/Collection";
 
 interface CollectionCardProps {
-  collection: string;
+    collection: Collection;
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({ collection }) => {
-  return (
-    <div
-      css={css`
-        display: flex;
-        margin-top: 0.5rem;
-      `}
-    >
-      <div
-        css={css`
-          width: 6rem;
-          height: 6rem;
-        `}
-      >
-        <img
-          css={css`
-            width: 100%;
-            height: 100%;
-          `}
-          src={PlaceHolder}
-        />
-      </div>
-      <div
-        css={css`
-          padding: 1rem;
-        `}
-      >
-        <h5>{collection}</h5>
-        <p
-          css={css`
-            font-size: 0.75rem;
-          `}
+    const navigate = useNavigate();
+    const handleClick = (collectionName: string) => {
+        navigate(`/collections/${collectionName}`);
+    };
+
+    return (
+        <div
+            css={css`
+                display: flex;
+                margin: 0.5rem 0;
+            `}
         >
-          1 anime
-        </p>
-        <Button size="small">Detail</Button>
-      </div>
-    </div>
-  );
+            <div
+                css={css`
+                    width: 8rem;
+                    height: 12rem;
+                    background-color: #f5f5f5;
+                `}
+            >
+                <img
+                    css={css`
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    `}
+                    src={
+                        collection.animes.length > 0 && collection.animes[0].coverImage
+                            ? collection.animes[0].coverImage.large
+                            : PlaceHolder
+                    }
+                />
+            </div>
+            <div
+                css={css`
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 0 1rem;
+                `}
+            >
+                <div>
+                    <h5>{collection.name}</h5>
+                    <p
+                        css={css`
+                            font-size: 0.75rem;
+                        `}
+                    >
+                        {collection.animes.length} anime{collection.animes.length > 1 ? "s" : ""}
+                    </p>
+                </div>
+                <Button size="small" onClick={() => handleClick(collection.name)}>
+                    Detail
+                </Button>
+            </div>
+        </div>
+    );
 };
 
 export default CollectionCard;
