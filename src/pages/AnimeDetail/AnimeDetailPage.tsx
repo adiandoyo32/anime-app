@@ -6,16 +6,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import Checkbox from "../../components/Checkbox";
-import Modal2 from "../../components/Modal2";
+import Modal from "../../components/Modal";
 import { useCollectionContext } from "../../context/CollectionContext";
 import { GET_ANIME } from "../../graphql/Queries";
-import { useModal } from "../../hooks/useModal";
+import useModal from "../../hooks/useModal";
 import Anime from "../../models/Anime";
 import Collection from "../../models/Collection";
 import AnimeDetailWrapper from "./components/AnimeDetailWrapper";
 import AnimeTitle from "./components/AnimeTitle";
-import Banner from "./components/Banner";
-import BannerImage from "./components/BannerImage";
 import Chip from "./components/Chip";
 import CollectionCard from "../../components/CollectionCard";
 import CoverImage from "./components/CoverImage";
@@ -163,7 +161,7 @@ const AnimeDetailPage = () => {
       </div>
 
       <div>
-        <Modal2 show={visible} close={toggle} title="Add to Collection">
+        <Modal show={visible} close={toggle} title="Add to Collection">
           {collections?.map((collection, index) => {
             return (
               <Checkbox
@@ -175,7 +173,7 @@ const AnimeDetailPage = () => {
             );
           })}
           <Button onClick={save}>Save</Button>
-        </Modal2>
+        </Modal>
       </div>
     </AnimeDetailWrapper>
   );

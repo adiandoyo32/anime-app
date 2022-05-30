@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const AnimeListGrid = styled.div`
+const AnimeListGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 1rem;
@@ -8,3 +8,5 @@ export const AnimeListGrid = styled.div`
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 `;
+
+export default AnimeListGrid;

@@ -21,6 +21,14 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
     const [storedCollections, setStoredCollections] = useLocalStorage<Collection[]>("collections", []);
     const [collections, setCollections] = React.useState<Collection[]>([]);
 
+    useEffect(() => {
+        setCollections(storedCollections);
+    }, []);
+
+    useEffect(() => {
+        setStoredCollections([...collections]);
+    }, [collections]);
+
     const addCollection = () => {
         setCollections([
             ...collections,
@@ -51,14 +59,6 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
         arr.splice(collectionIndex, 1, collection);
         setCollections(arr);
     };
-
-    useEffect(() => {
-        setCollections(storedCollections);
-    }, []);
-
-    useEffect(() => {
-        setStoredCollections([...collections]);
-    }, [collections]);
 
     return (
         <CollectionContext.Provider

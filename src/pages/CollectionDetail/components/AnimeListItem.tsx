@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { TrashIcon } from "@heroicons/react/solid";
+import React from "react";
 import IconButton from "../../../components/IconButton";
 import { PlaceHolder } from "../../../images";
 import Anime from "../../../models/Anime";
@@ -9,9 +10,12 @@ interface AnimeListItemProps {
     anime: Anime;
     animeIndex: number;
     removeAnime: (index: number) => void;
+    onRemoveClick: () => void;
 }
 
-const AnimeListItem: React.FC<AnimeListItemProps> = ({ anime, animeIndex, removeAnime }) => {
+const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
+    console.log("render anime list");
+
     return (
         <div
             css={css`
@@ -39,7 +43,7 @@ const AnimeListItem: React.FC<AnimeListItemProps> = ({ anime, animeIndex, remove
                         height: 100%;
                         object-fit: cover;
                     `}
-                    src={anime.coverImage.large ?? PlaceHolder}
+                    src={props.anime.coverImage.large ?? PlaceHolder}
                 />
             </div>
             <div
@@ -51,17 +55,17 @@ const AnimeListItem: React.FC<AnimeListItemProps> = ({ anime, animeIndex, remove
                 `}
             >
                 <div>
-                    <h4>{anime.title.userPreferred}</h4>
+                    <h4>{props.anime.title.userPreferred}</h4>
                     <p
                         css={css`
                             font-size: 0.75rem;
                         `}
                     >
-                        {anime.averageScore}
+                        {props.anime.averageScore}
                     </p>
                 </div>
                 <div>
-                    <IconButton onClick={() => removeAnime(animeIndex)}>
+                    <IconButton onClick={props.onRemoveClick}>
                         <TrashIcon
                             css={css`
                                 color: red;
@@ -76,4 +80,4 @@ const AnimeListItem: React.FC<AnimeListItemProps> = ({ anime, animeIndex, remove
     );
 };
 
-export default AnimeListItem;
+export default React.memo(AnimeListItem);
