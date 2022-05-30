@@ -17,7 +17,7 @@ import AnimeTitle from "./components/AnimeTitle";
 import Banner from "./components/Banner";
 import BannerImage from "./components/BannerImage";
 import Chip from "./components/Chip";
-import CollectionCard from "./components/CollectionCard";
+import CollectionCard from "../../components/CollectionCard";
 import CoverImage from "./components/CoverImage";
 import Description from "./components/Description";
 import Dot from "./components/Dot";
