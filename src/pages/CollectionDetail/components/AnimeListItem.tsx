@@ -9,12 +9,12 @@ import Anime from "../../../models/Anime";
 interface AnimeListItemProps {
     anime: Anime;
     animeIndex: number;
-    removeAnime: (index: number) => void;
-    onRemoveClick: () => void;
+    removeAnime?: (index: number) => void;
+    onRemoveClick?: () => void;
 }
 
 const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
-    console.log("render anime list");
+    console.log("render anime list item");
 
     return (
         <div

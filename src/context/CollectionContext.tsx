@@ -73,4 +73,4 @@ export function useCollectionContext() {
     return React.useContext(CollectionContext);
 }
 
-export default CollectionProvider;
+export default React.memo(CollectionProvider);
