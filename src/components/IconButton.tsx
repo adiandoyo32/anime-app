@@ -7,7 +7,7 @@ interface IconButtonProps {
 }
 
 const IconButton: React.FC<IconButtonProps> = (props) => {
-    return <IconButtonStyles onClick={props.onClick}>{props.children}</IconButtonStyles>;
+    return <IconButtonStyles onClick={props.onClick} aria-label="button">{props.children}</IconButtonStyles>;
 };
 
 export default IconButton;

@@ -8,14 +8,11 @@ import Anime from "../../../models/Anime";
 
 interface AnimeListItemProps {
     anime: Anime;
-    animeIndex: number;
     removeAnime?: (index: number) => void;
     onRemoveClick?: () => void;
 }
 
 const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
-    console.log("render anime list item");
-
     return (
         <div
             css={css`
@@ -44,6 +41,7 @@ const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
                         object-fit: cover;
                     `}
                     src={props.anime.coverImage.large ?? PlaceHolder}
+                    alt={props.anime.title.userPreferred}
                 />
             </div>
             <div

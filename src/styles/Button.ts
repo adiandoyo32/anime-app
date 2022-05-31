@@ -27,7 +27,7 @@ const resolveSize = (size?: string) => {
   }
 };
 
-export const ButtonStyles = styled.button<ButtonStyledCProps>`
+export const ButtonStyles = styled.button<ButtonStyledCProps & React.ButtonHTMLAttributes<HTMLButtonElement>>`
   width: max-content;
   ${({ size }) => resolveSize(size)};
   border-radius: 0.375rem;
