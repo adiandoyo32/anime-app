@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+import { Theme } from "@emotion/react";
+import styled, { Interpolation } from "@emotion/styled";
 
 interface TextButtonStyledProps {
   size?: "large" | "medium" | "small";
@@ -21,7 +22,7 @@ const resolveSize = (size?: string) => {
     case "large":
       return "padding: 0.5rem 1rem;";
     case "small":
-      return "padding: 0.25rem 0.5rem; font-size: 0.75rem";
+      return "padding: 0.5rem 0.75rem; font-size: 0.75rem";
     default:
       return "padding: 0.5rem 1rem;";
   }

@@ -11,7 +11,7 @@ interface ButtonProps {
     children?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const TextButton: React.FC<ButtonProps> = (props) => {
     return (
         <TextButtonStyles css={props.css} size={props.size} color={props.color} onClick={props.onClick}>
             {props.children}
@@ -19,4 +19,4 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
 };
 
-export default Button;
+export default TextButton;
