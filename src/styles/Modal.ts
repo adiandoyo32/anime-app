@@ -15,8 +15,14 @@ export const ModalBase = styled.div`
 
 export const ModalContent = styled.div`
     background-color: #fff;
-    width: 50%;
+    width: 80%;
     border-radius: 0.375rem;
+    @media (min-width: 720px) {
+        width: 50%;
+    }
+    @media (min-width: 970px) {
+        width: 40%;
+    }
 `;
 
 export const ModalHeader = styled.div`
@@ -44,6 +50,6 @@ export const ModalFooter = styled.div`
     align-items: center;
     padding: 1rem;
     & > button:first-of-type {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
     }
 `;

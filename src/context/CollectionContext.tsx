@@ -5,7 +5,8 @@ import Collection from "../models/Collection";
 
 interface CollectionContextInterface {
     collections: Collection[];
-    addCollection: () => void;
+    findExistingCollection: (collectionName: string) => Collection | undefined;
+    addCollection: (collectionName: string) => void;
     removeCollection: (index: number) => void;
     saveAnimeToCollection: (anime: Anime, selectedCollectionNames: string[]) => void;
     updateCollectionByIndex: (collectionIndex: number, collection: Collection) => void;
@@ -29,11 +30,15 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
         setStoredCollections([...collections]);
     }, [collections]);
 
-    const addCollection = () => {
+    const findExistingCollection = (collectionName: string) => {
+        return collections.find((collection) => collection.name === collectionName);
+    };
+
+    const addCollection = (collectionName: string) => {
         setCollections([
             ...collections,
             {
-                name: "Collection " + (collections.length + 1),
+                name: collectionName,
                 animes: [],
             },
         ]);
@@ -62,7 +67,14 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
 
     return (
         <CollectionContext.Provider
-            value={{ collections, addCollection, removeCollection, saveAnimeToCollection, updateCollectionByIndex }}
+            value={{
+                collections,
+                findExistingCollection,
+                addCollection,
+                removeCollection,
+                saveAnimeToCollection,
+                updateCollectionByIndex,
+            }}
         >
             {props.children}
         </CollectionContext.Provider>

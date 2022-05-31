@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-interface ButtonStyledCProps {
+interface ButtonStyledProps {
   size?: "large" | "medium" | "small";
   color?: string;
 }
@@ -27,7 +27,7 @@ const resolveSize = (size?: string) => {
   }
 };
 
-export const ButtonStyles = styled.button<ButtonStyledCProps & React.ButtonHTMLAttributes<HTMLButtonElement>>`
+export const ButtonStyles = styled.button<ButtonStyledProps & React.ButtonHTMLAttributes<HTMLButtonElement>>`
   width: max-content;
   ${({ size }) => resolveSize(size)};
   border-radius: 0.375rem;

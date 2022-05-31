@@ -36,7 +36,7 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
     toggle();
   };
 
-  const confirmDelete = (values: boolean) => {
+  const confirmDeleteClick = (values: boolean) => {
     if (!values) return;
     removeCollection(currentCollectionIndex.current);
     toggle();
@@ -60,7 +60,7 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
         close={toggle}
         show={visible}
         title="Delete Collection"
-        confirm={confirmDelete}
+        confirm={confirmDeleteClick}
       >
         <p
           css={css`
