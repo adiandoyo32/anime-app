@@ -4,7 +4,7 @@ export const IconButtonStyles = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.75rem;
+    padding: 0.4rem;
     border-radius: 0.375rem;
     background: transparent;
     border: 0;

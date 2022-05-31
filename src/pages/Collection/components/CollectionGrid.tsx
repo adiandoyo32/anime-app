@@ -1,7 +1,12 @@
+/** @jsxImportSource @emotion/react */
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
 import CollectionCard from "../../../components/CollectionCard";
+import Modal from "../../../components/Modal";
+import useModal from "../../../hooks/useModal";
 import Collection from "../../../models/Collection";
+import { useCollectionContext } from "../../../context/CollectionContext";
 
 const Grid = styled.div`
   display: grid;
@@ -20,12 +25,54 @@ interface CollectionGridProps {
 }
 
 const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
+  const { removeCollection } = useCollectionContext();
+  const { toggle, visible } = useModal();
+  const [currentCollection, setCurrentCollection] = useState<Collection>();
+  const currentCollectionIndex = useRef<number>(0);
+
+  const onRemoveClick = (collection: Collection, index: number) => {
+    setCurrentCollection(collection);
+    currentCollectionIndex.current = index;
+    toggle();
+  };
+
+  const confirmDelete = (values: boolean) => {
+    if (!values) return;
+    removeCollection(currentCollectionIndex.current);
+    toggle();
+  };
+
   return (
-    <Grid>
-      {collections.map((collection) => {
-        return <CollectionCard key={collection.name} collection={collection} />;
-      })}
-    </Grid>
+    <>
+      <Grid>
+        {collections.map((collection, index) => {
+          return (
+            <CollectionCard
+              key={collection.name}
+              collection={collection}
+              onRemoveClick={() => onRemoveClick(collection, index)}
+            />
+          );
+        })}
+      </Grid>
+
+      <Modal
+        close={toggle}
+        show={visible}
+        title="Delete Collection"
+        confirm={confirmDelete}
+      >
+        <p
+          css={css`
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #828282;
+          `}
+        >
+          Are you sure you want to delete {currentCollection?.name}?
+        </p>
+      </Modal>
+    </>
   );
 };
 

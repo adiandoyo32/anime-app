@@ -1,35 +1,53 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { TrashIcon } from "@heroicons/react/solid";
-import { Link } from "react-router-dom";
 import Button from "../../components/Button";
-import IconButton from "../../components/IconButton";
 import { useCollectionContext } from "../../context/CollectionContext";
-import CollectionCard from "../../components/CollectionCard";
+import { Empty } from "../../images";
 import HomeWrapper from "../Home/components/HomeWrapper";
 import CollectionGrid from "./components/CollectionGrid";
 
 const CollectionPage = () => {
-    const { collections, addCollection, removeCollection } = useCollectionContext();
+  const { collections, addCollection } = useCollectionContext();
 
-    if (!collections) return <div>No yet</div>;
+  if (!collections.length)
     return (
-        <HomeWrapper>
-            <div
-                css={css`
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 1rem;
-                `}
-            >
-                <h3>Collection</h3>
-                <Button onClick={addCollection}>New Collection</Button>
-            </div>
-            <CollectionGrid collections={collections} />
-        </HomeWrapper>
+      <div
+        css={css`
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        <img
+          css={css`
+            width: 10%;
+          `}
+          src={Empty}
+        />
+        No collection found
+        <div>
+          <Button onClick={addCollection}>New Collection</Button>
+        </div>
+      </div>
     );
+    
+  return (
+    <HomeWrapper>
+      <div
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+        `}
+      >
+        <h3>Collection</h3>
+        <Button onClick={addCollection}>New Collection</Button>
+      </div>
+      <CollectionGrid collections={collections} />
+    </HomeWrapper>
+  );
 };
 
 export default CollectionPage;

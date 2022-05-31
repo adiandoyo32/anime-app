@@ -24,11 +24,10 @@ export const ModalHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    border-bottom: 1px solid #e5e5e5;
 `;
 
 export const ModalTitle = styled.div`
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 500;
 `;
 
@@ -44,7 +43,6 @@ export const ModalFooter = styled.div`
     justify-content: flex-end;
     align-items: center;
     padding: 1rem;
-    border-top: 1px solid #e5e5e5;
     & > button:first-of-type {
         margin-right: .5rem;
     }

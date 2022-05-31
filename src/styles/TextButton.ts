@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-interface ButtonStyledCProps {
+interface TextButtonStyledProps {
   size?: "large" | "medium" | "small";
   color?: string;
 }
@@ -8,11 +8,11 @@ interface ButtonStyledCProps {
 const resolveColor = (color?: string) => {
   switch (color) {
     case "primary":
-      return "color: #fff; background: #3b82f6;";
+      return "color: #3b82f6;;";
     case "danger":
-      return "color: #fff; background: red;";
+      return "color: red;";
     default:
-      return "color: #fff; background: #3b82f6;";
+      return "color: #3b82f6;";
   }
 };
 
@@ -27,17 +27,17 @@ const resolveSize = (size?: string) => {
   }
 };
 
-export const ButtonStyles = styled.button<ButtonStyledCProps>`
+export const TextButtonStyles = styled.button<TextButtonStyledProps>`
   width: max-content;
   ${({ size }) => resolveSize(size)};
   border-radius: 0.375rem;
-  background: #3b82f6;
+  background: transparent;
   ${({ color }) => resolveColor(color)};
   border: 0;
   transition-duration: 200ms;
   font-weight: 500;
   &:hover {
     cursor: pointer;
-    background: #2563eb;
+    background: rgba(0, 0, 0, 0.1);
   }
 `;
