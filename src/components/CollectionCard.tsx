@@ -43,6 +43,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection }) => {
                             ? collection.animes[0].coverImage.large
                             : PlaceHolder
                     }
+                    alt=""
                 />
             </div>
             <div
@@ -71,4 +72,4 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection }) => {
     );
 };
 
-export default CollectionCard;
+export default React.memo(CollectionCard);

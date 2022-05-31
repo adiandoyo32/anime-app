@@ -19,7 +19,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
     return (
         <Card>
             <CardPoster onClick={() => handleClick(anime)}>
-                <CardImage src={anime.coverImage.large} />
+                <CardImage src={anime.coverImage.large} alt={anime.title.userPreferred} />
             </CardPoster>
             <CardContent>
                 <CardTitle onClick={() => handleClick(anime)}>{anime.title.userPreferred}</CardTitle>

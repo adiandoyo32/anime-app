@@ -22,8 +22,6 @@ export const GET_ANIME_LIST = gql`
                 season
                 averageScore
                 coverImage {
-                    color
-                    medium
                     large
                 }
             }
