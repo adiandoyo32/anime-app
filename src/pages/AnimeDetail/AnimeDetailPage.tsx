@@ -2,7 +2,7 @@
 import { useQuery } from "@apollo/client";
 import { css } from "@emotion/react";
 import { StarIcon } from "@heroicons/react/solid";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import Checkbox from "../../components/Checkbox";
@@ -23,6 +23,7 @@ import { Rate } from "./components/Rate";
 import FormControl from "../../components/FormControl";
 import TextButton from "../../components/TextButton";
 import ErrorText from "../../components/ErrorText";
+import CollectionGrid from "./components/CollectionGrid";
 
 const AnimeDetailPage = () => {
     const { id } = useParams();
@@ -88,7 +89,7 @@ const AnimeDetailPage = () => {
 
     const toggleIsAddCollection = () => {
         setIsAddCollection(!isAddCollection);
-        setCollectionName("")
+        setCollectionName("");
     };
 
     const createNewCollection = () => {
@@ -109,20 +110,16 @@ const AnimeDetailPage = () => {
         if (!values) return;
         saveAnimeToCollection(anime, selectedCollection);
         toggle();
-    }
+    };
 
     return (
         <AnimeDetailWrapper>
-            {/* <Banner>
-                <BannerImage src={anime.bannerImage} />
-            </Banner> */}
-
             <div
                 className="grid"
                 css={css`
                     grid-gap: 1rem;
                     @media (min-width: 590px) {
-                        grid-template-columns: 1fr 2fr;
+                        grid-template-columns: 1fr 3fr;
                     }
                 `}
             >
@@ -184,17 +181,25 @@ const AnimeDetailPage = () => {
                 `}
             >
                 <h3>Collection info</h3>
-                {storedCollection.length > 0 ? (
-                    storedCollection.map((collection, index) => {
-                        return <CollectionCard key={index} collection={collection} />;
-                    })
-                ) : (
-                    <div>No collection found</div>
-                )}
+                <CollectionGrid>
+                    {storedCollection.length > 0 ? (
+                        storedCollection.map((collection, index) => {
+                            return <CollectionCard key={index} collection={collection} />;
+                        })
+                    ) : (
+                        <div>No collection found</div>
+                    )}
+                </CollectionGrid>
             </div>
 
             <div>
-                <Modal show={visible} close={toggle} title="Add to Collection" confirm={onSaveAnimeToCollections}>
+                <Modal
+                    show={visible}
+                    close={toggle}
+                    title="Add to Collection"
+                    confirm={onSaveAnimeToCollections}
+                    confirmText="Save"
+                >
                     {collections?.map((collection, index) => {
                         return (
                             <Checkbox

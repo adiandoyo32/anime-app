@@ -7,7 +7,7 @@ const Main = styled.main`
     padding: 1.5rem;
     width: 100%;
     height: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 4rem);
     background-color: #fff;
     // background-color: #f1f1f1;
     // @media (min-width: 1091px) {

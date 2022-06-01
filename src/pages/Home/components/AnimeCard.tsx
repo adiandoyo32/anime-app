@@ -40,7 +40,6 @@ const CardContent = styled.div`
 `;
 
 const CardTitle = styled.p`
-    width: max-content;
     font-size: 1rem;
     font-weight: 700;
     display: -webkit-box;

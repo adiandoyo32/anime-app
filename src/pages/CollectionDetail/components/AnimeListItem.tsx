@@ -1,10 +1,78 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { TrashIcon } from "@heroicons/react/solid";
+import styled from "@emotion/styled";
+import { StarIcon, TrashIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../../components/Button";
 import IconButton from "../../../components/IconButton";
 import { PlaceHolder } from "../../../images";
 import Anime from "../../../models/Anime";
+
+const Card = styled.div`
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+`;
+
+const CardImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+`;
+
+const CardContent = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.875rem;
+`;
+
+const CardTitle = styled.p`
+    width: max-content;
+    font-size: 1rem;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-break: break-all;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: red;
+    }
+`;
+
+const CardSubtitle = styled.p`
+    width: auto;
+    font-weight: 500;
+    color: #8a8a8a;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+`;
+
+const Rate = styled.span`
+    font-size: 0.875rem;
+    color: #fdcc0d;
+    font-weight: 500;
+`;
 
 interface AnimeListItemProps {
     anime: Anime;
@@ -13,68 +81,73 @@ interface AnimeListItemProps {
 }
 
 const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
+    const navigate = useNavigate();
+
     return (
-        <div
-            css={css`
-                display: flex;
-                // margin-bottom: 1rem;
-                border-radius: 0.5rem;
-                overflow: hidden;
-                &:hover {
-                    // box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-                }
-            `}
-        >
+        <Card>
             <div
                 css={css`
-                    width: 8rem;
+                    width: 12rem;
                     height: 12rem;
                     background-color: #f5f5f5;
-                    border-radius: 0.5rem;
                     overflow: hidden;
                 `}
             >
-                <img
-                    css={css`
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    `}
-                    src={props.anime.coverImage.large ?? PlaceHolder}
-                    alt={props.anime.title.userPreferred}
-                />
+                <CardImage src={props.anime.coverImage.large ?? PlaceHolder} alt={props.anime.title.userPreferred} />
             </div>
-            <div
-                css={css`
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    padding: 0 1rem;
-                `}
-            >
+            <CardContent>
                 <div>
-                    <h4>{props.anime.title.userPreferred}</h4>
-                    <p
+                    <CardTitle>{props.anime.title.userPreferred}</CardTitle>
+                    <div
                         css={css`
-                            font-size: 0.75rem;
+                            width: 100%;
                         `}
                     >
-                        {props.anime.averageScore}
-                    </p>
-                </div>
-                <div>
-                    <IconButton onClick={props.onRemoveClick}>
-                        <TrashIcon
+                        <CardSubtitle
                             css={css`
-                                color: red;
-                                width: 1rem;
-                                height: 1rem;
+                                font-size: 0.75rem;
                             `}
-                        />
-                    </IconButton>
+                        >
+                            {props.anime.seasonYear}
+                        </CardSubtitle>
+                        <div
+                            css={css`
+                                display: flex;
+                                align-items: center;
+                            `}
+                        >
+                            <StarIcon
+                                css={css`
+                                    height: 1rem;
+                                    width: 1rem;
+                                    color: #ffc400;
+                                `}
+                            />
+                            <Rate>
+                                <span>{props.anime.averageScore}</span>
+                            </Rate>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div
+                    css={css`
+                        display: flex;
+                    `}
+                >
+                    <Button size="small" onClick={() => navigate(`/anime/${props.anime.id}`)}>
+                        Detail
+                    </Button>
+                    <span
+                        css={css`
+                            margin-left: 0.5rem;
+                        `}
+                    />
+                    <Button size="small" color="danger" onClick={props.onRemoveClick}>
+                        Delete
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
     );
 };
 

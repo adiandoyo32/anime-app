@@ -2,12 +2,14 @@
 import { css } from "@emotion/react";
 import React, { useRef } from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCollectionContext } from "../../context/CollectionContext";
 import Collection from "../../models/Collection";
 import AnimeListGrid from "./components/AnimeListGrid";
+import EmptyState from "./components/EmptyState";
 
 const CollectionDetailPage = () => {
+    const navigate = useNavigate();
     const { name } = useParams();
     const { collections } = useCollectionContext();
     const [collection, setCollection] = useState<Collection | null>(null);
@@ -33,7 +35,16 @@ const CollectionDetailPage = () => {
             >
                 {collection.name}
             </h3>
-            <AnimeListGrid collection={collection} collectionIndex={collectionIndex.current} />
+            {collection.animes.length > 0 ? (
+                <AnimeListGrid collection={collection} collectionIndex={collectionIndex.current} />
+            ) : (
+                <EmptyState
+                    title="This Collection is Empty"
+                    description="Add an anime to this collection by clicking the button below"
+                    action={() => navigate("/")}
+                    actionText="Add more animes"
+                />
+            )}
         </>
     );
 };

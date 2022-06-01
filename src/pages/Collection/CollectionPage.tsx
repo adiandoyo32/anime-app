@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../components/Button";
 import ErrorText from "../../components/ErrorText";
 import FormControl from "../../components/FormControl";
@@ -10,7 +9,7 @@ import FormLabel from "../../components/FormLabel";
 import Modal from "../../components/Modal";
 import { useCollectionContext } from "../../context/CollectionContext";
 import useModal from "../../hooks/useModal";
-import { Empty } from "../../images";
+import EmptyState from "../CollectionDetail/components/EmptyState";
 import HomeWrapper from "../Home/components/HomeWrapper";
 import CollectionGrid from "./components/CollectionGrid";
 
@@ -48,47 +47,38 @@ const CollectionPage = () => {
         if (collectionName) setError("");
     };
 
-    if (!collections.length)
-        return (
-            <div
-                css={css`
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                `}
-            >
-                <img
-                    css={css`
-                        width: 10%;
-                    `}
-                    src={Empty}
-                />
-                No collection found
-                <div>
-                    <Button onClick={onAddCollectionClick}>New Collection</Button>
-                </div>
-            </div>
-        );
-
     return (
         <>
             <HomeWrapper>
                 <div
                     css={css`
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: flex-end;
                         align-items: center;
                         margin-bottom: 1rem;
                     `}
                 >
-                    <h3>Collection</h3>
-                    <Button onClick={onAddCollectionClick}>New Collection</Button>
+                    {collections.length > 0 && <Button onClick={onAddCollectionClick}>New Collection</Button>}
                 </div>
-                <CollectionGrid collections={collections} />
+                {collections.length > 0 ? (
+                    <CollectionGrid collections={collections} />
+                ) : (
+                    <EmptyState
+                        title="Collection is Empty"
+                        description=""
+                        action={() => onAddCollectionClick()}
+                        actionText="New Collection"
+                    />
+                )}
             </HomeWrapper>
 
-            <Modal close={toggle} show={visible} title="New Collection" confirm={onSaveCollectionClick}>
+            <Modal
+                close={toggle}
+                show={visible}
+                title="New Collection"
+                confirm={onSaveCollectionClick}
+                confirmText="Save"
+            >
                 <FormGroup>
                     <FormLabel htmlFor="collection-name">Collection Name</FormLabel>
                     <FormControl
