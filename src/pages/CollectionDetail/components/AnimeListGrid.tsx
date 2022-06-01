@@ -23,8 +23,8 @@ interface AnimeListGridProps {
 }
 
 const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionIndex }) => {
-  const { updateCollectionByIndex } = useCollectionContext();  
-  const { toggle, visible } = useModal();
+    const { updateCollectionByIndex } = useCollectionContext();
+    const { toggle, visible } = useModal();
     const [currentAnime, setCurrentAnime] = useState<Anime>();
     const currentAnimeIndex = useRef<number>(0);
 
@@ -37,7 +37,7 @@ const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionInd
     const confirmDelete = (values: boolean) => {
         if (!values) return;
         collection.animes.splice(currentAnimeIndex.current, 1);
-        updateCollectionByIndex(collectionIndex, collection)
+        updateCollectionByIndex(collectionIndex, collection);
         toggle();
     };
 
@@ -46,24 +46,27 @@ const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionInd
             <Grid>
                 {collection.animes.map((anime, index) => {
                     return (
-                        <AnimeListItem
-                            key={index}
-                            anime={anime}
-                            onRemoveClick={() => onRemoveClick(anime, index)}
-                        />
+                        <AnimeListItem key={index} anime={anime} onRemoveClick={() => onRemoveClick(anime, index)} />
                     );
                 })}
             </Grid>
 
-            <Modal close={toggle} show={visible} title="Delete Anime" confirm={confirmDelete} confirmText="Delete">
+            <Modal
+                close={toggle}
+                show={visible}
+                title={currentAnime?.title.userPreferred ?? ""}
+                confirm={confirmDelete}
+                confirmText="Delete"
+            >
                 <p
                     css={css`
                         font-size: 0.875rem;
                         line-height: 1.25rem;
                         color: #828282;
+                        font-weight: 500;
                     `}
                 >
-                    Are you sure you want to delete {currentAnime?.title.userPreferred}?
+                    Are you sure you want to delete {currentAnime?.title.userPreferred} from collection?
                 </p>
             </Modal>
         </>

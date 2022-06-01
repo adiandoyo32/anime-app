@@ -24,6 +24,7 @@ import FormControl from "../../components/FormControl";
 import TextButton from "../../components/TextButton";
 import ErrorText from "../../components/ErrorText";
 import CollectionGrid from "./components/CollectionGrid";
+import { validateCollectionName } from "../../utils/utils";
 
 const AnimeDetailPage = () => {
     const { id } = useParams();
@@ -93,17 +94,26 @@ const AnimeDetailPage = () => {
     };
 
     const createNewCollection = () => {
-        if (!collectionName || collectionName.length === 0) {
-            setErrorMessage("Collection name is required");
-            return;
+        try {
+            const isValid = validateCollectionName(collectionName, findExistingCollection);
+            if (isValid) {
+                addCollection(collectionName);
+                toggleIsAddCollection();
+            }
+        } catch (error: any) {
+            setErrorMessage(error.message);
         }
-        const foundCollection = findExistingCollection(collectionName);
-        if (foundCollection) {
-            setErrorMessage("Collection name already exists");
-            return;
-        }
-        addCollection(collectionName);
-        toggleIsAddCollection();
+        // if (!collectionName || collectionName.length === 0) {
+        //     setErrorMessage("Collection name is required");
+        //     return;
+        // }
+        // const foundCollection = findExistingCollection(collectionName);
+        // if (foundCollection) {
+        //     setErrorMessage("Collection name already exists");
+        //     return;
+        // }
+        // addCollection(collectionName);
+        // toggleIsAddCollection();
     };
 
     const onSaveAnimeToCollections = (values: boolean) => {

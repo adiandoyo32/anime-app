@@ -38,7 +38,7 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
         setCollections([
             ...collections,
             {
-                name: collectionName,
+                name: collectionName.trim(),
                 animes: [],
             },
         ]);

@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { StarIcon, TrashIcon } from "@heroicons/react/solid";
+import { StarIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
-import IconButton from "../../../components/IconButton";
 import { PlaceHolder } from "../../../images";
 import Anime from "../../../models/Anime";
 
@@ -36,7 +35,6 @@ const CardContent = styled.div`
 `;
 
 const CardTitle = styled.p`
-    width: max-content;
     font-size: 1rem;
     font-weight: 700;
     display: -webkit-box;
@@ -85,16 +83,14 @@ const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
 
     return (
         <Card>
-            <div
+            <CardImage
                 css={css`
-                    width: 12rem;
+                    width: 8rem;
                     height: 12rem;
-                    background-color: #f5f5f5;
-                    overflow: hidden;
                 `}
-            >
-                <CardImage src={props.anime.coverImage.large ?? PlaceHolder} alt={props.anime.title.userPreferred} />
-            </div>
+                src={props.anime.coverImage.large ?? PlaceHolder}
+                alt={props.anime.title.userPreferred}
+            />
             <CardContent>
                 <div>
                     <CardTitle>{props.anime.title.userPreferred}</CardTitle>

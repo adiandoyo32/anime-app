@@ -82,13 +82,6 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onRemoveCli
     return (
         <>
             <Card>
-                {/* <div
-                    css={css`
-                        width: 8rem;
-                        height: 12rem;
-                        overflow: hidden;
-                    `}
-                > */}
                 <CardImage
                     css={css`
                         width: 8rem;
@@ -101,10 +94,9 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onRemoveCli
                     }
                     alt=""
                 />
-                {/* </div> */}
                 <CardContent>
                     <div>
-                        <CardTitle>{collection.name} asdasd asd</CardTitle>
+                        <CardTitle>{collection.name}</CardTitle>
                         <CardSubtitle>
                             {collection.animes.length} anime
                             {collection.animes.length > 1 ? "s" : ""}

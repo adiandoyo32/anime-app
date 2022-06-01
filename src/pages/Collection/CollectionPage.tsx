@@ -9,6 +9,7 @@ import FormLabel from "../../components/FormLabel";
 import Modal from "../../components/Modal";
 import { useCollectionContext } from "../../context/CollectionContext";
 import useModal from "../../hooks/useModal";
+import { validateCollectionName } from "../../utils/utils";
 import EmptyState from "../CollectionDetail/components/EmptyState";
 import HomeWrapper from "../Home/components/HomeWrapper";
 import CollectionGrid from "./components/CollectionGrid";
@@ -27,18 +28,16 @@ const CollectionPage = () => {
 
     const onSaveCollectionClick = (values: boolean) => {
         if (!values) return;
-        if (!collectionName || collectionName.length === 0) {
-            setError("Collection name is required");
-            return;
+        try {
+            const isValid = validateCollectionName(collectionName, findExistingCollection);
+            if (isValid) {
+                addCollection(collectionName);
+                setCollectionName("");
+                toggle();
+            }
+        } catch (error: any) {
+            setError(error.message as string);
         }
-        const foundCollection = findExistingCollection(collectionName);
-        if (foundCollection) {
-            setError("Collection name already exists");
-            return;
-        }
-        addCollection(collectionName);
-        setCollectionName("");
-        toggle();
     };
 
     const onCollectionNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

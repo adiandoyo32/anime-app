@@ -54,7 +54,7 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
                 })}
             </Grid>
 
-            <Modal close={toggle} show={visible} title="Delete Collection" confirm={confirmDeleteClick}>
+            <Modal close={toggle} show={visible} title={currentCollection?.name ?? ""} confirm={confirmDeleteClick} confirmText="Delete">
                 <p
                     css={css`
                         font-size: 0.875rem;
