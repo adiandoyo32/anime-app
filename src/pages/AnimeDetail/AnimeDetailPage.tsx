@@ -22,18 +22,21 @@ import Dot from "./components/Dot";
 import { Rate } from "./components/Rate";
 import FormControl from "../../components/FormControl";
 import TextButton from "../../components/TextButton";
+import ErrorText from "../../components/ErrorText";
 
 const AnimeDetailPage = () => {
     const { id } = useParams();
     const { error, loading, data } = useQuery(GET_ANIME, {
         variables: { id: id },
     });
-    const { collections, saveAnimeToCollection } = useCollectionContext();
+    const { collections, saveAnimeToCollection, findExistingCollection, addCollection } = useCollectionContext();
+    const { visible, toggle } = useModal();
     const [anime, setAnime] = useState<Anime | null>(null);
     const [selectedCollection, setSelectedCollection] = useState<string[]>([]);
     const [storedCollection, setStoredCollection] = useState<Collection[]>([]);
-    const { visible, toggle } = useModal();
     const [isAddCollection, setIsAddCollection] = useState<boolean>(false);
+    const [collectionName, setCollectionName] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     useEffect(() => {
         if (data) {
@@ -77,14 +80,36 @@ const AnimeDetailPage = () => {
         return false;
     };
 
-    const save = () => {
-        saveAnimeToCollection!(anime, selectedCollection);
-        toggle();
+    const onCollectionNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        setCollectionName(() => e.target.value);
+        if (collectionName) setErrorMessage("");
     };
 
     const toggleIsAddCollection = () => {
         setIsAddCollection(!isAddCollection);
+        setCollectionName("")
     };
+
+    const createNewCollection = () => {
+        if (!collectionName || collectionName.length === 0) {
+            setErrorMessage("Collection name is required");
+            return;
+        }
+        const foundCollection = findExistingCollection(collectionName);
+        if (foundCollection) {
+            setErrorMessage("Collection name already exists");
+            return;
+        }
+        addCollection(collectionName);
+        toggleIsAddCollection();
+    };
+
+    const onSaveAnimeToCollections = (values: boolean) => {
+        if (!values) return;
+        saveAnimeToCollection(anime, selectedCollection);
+        toggle();
+    }
 
     return (
         <AnimeDetailWrapper>
@@ -169,7 +194,7 @@ const AnimeDetailPage = () => {
             </div>
 
             <div>
-                <Modal show={visible} close={toggle} title="Add to Collection">
+                <Modal show={visible} close={toggle} title="Add to Collection" confirm={onSaveAnimeToCollections}>
                     {collections?.map((collection, index) => {
                         return (
                             <Checkbox
@@ -182,12 +207,21 @@ const AnimeDetailPage = () => {
                     })}
                     {isAddCollection && (
                         <>
-                            <FormControl css={{ marginTop: "1rem" }} placeholder="Collection name" />
+                            <FormControl
+                                css={{ marginTop: "1rem" }}
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Collection name"
+                                value={collectionName}
+                                onChange={onCollectionNameInputChange}
+                                isInvalid={errorMessage ? true : false}
+                            />
+                            <ErrorText error={errorMessage} />
                             <div css={{ marginTop: "0.5rem" }}>
                                 <TextButton size="small" onClick={toggleIsAddCollection}>
                                     Cancel
                                 </TextButton>
-                                <TextButton size="small" onClick={toggleIsAddCollection}>
+                                <TextButton size="small" onClick={createNewCollection}>
                                     Save
                                 </TextButton>
                             </div>
@@ -201,7 +235,6 @@ const AnimeDetailPage = () => {
                             </TextButton>
                         </>
                     )}
-                    {/* <Button onClick={save}>Save</Button> */}
                 </Modal>
             </div>
         </AnimeDetailWrapper>

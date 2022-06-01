@@ -16,6 +16,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
                     display: flex;
                     align-items: center;
                     width: max-content;
+                    cursor: pointer;
                 `}
             >
                 <input css={css`

@@ -19,7 +19,10 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
     return (
         <Card>
             <CardPoster onClick={() => handleClick(anime)}>
-                <CardImage src={anime.coverImage.large} alt={anime.title.userPreferred} />
+                {/* <picture> */}
+                    {/* <source srcSet={anime.coverImage.large} type="image/webp" /> */}
+                    <CardImage src={anime.coverImage.large} alt={anime.title.userPreferred} />
+                {/* </picture> */}
             </CardPoster>
             <CardContent>
                 <CardTitle onClick={() => handleClick(anime)}>{anime.title.userPreferred}</CardTitle>
@@ -46,4 +49,4 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
     );
 };
 
-export default AnimeCard;
+export default React.memo(AnimeCard);

@@ -35,13 +35,14 @@ const CollectionPage = () => {
         const foundCollection = findExistingCollection(collectionName);
         if (foundCollection) {
             setError("Collection name already exists");
+            return;
         }
         addCollection(collectionName);
         setCollectionName("");
         toggle();
     };
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onCollectionNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setCollectionName(() => e.target.value);
         if (collectionName) setError("");
@@ -95,7 +96,7 @@ const CollectionPage = () => {
                         type="text"
                         placeholder="Enter collection name"
                         autoComplete="off"
-                        onChange={onChange}
+                        onChange={onCollectionNameInputChange}
                         value={collectionName}
                         isInvalid={error ? true : false}
                     />
