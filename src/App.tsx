@@ -1,12 +1,13 @@
+import React, { lazy, Suspense } from "react";
 import "./App.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import HomePage from "./pages/Home/HomePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AnimeDetailPage from "./pages/AnimeDetail/AnimeDetailPage";
-import CollectionProvider from "./context/CollectionContext";
-import CollectionPage from "./pages/Collection/CollectionPage";
 import Layout from "./components/Layout";
-import CollectionDetailPage from "./pages/CollectionDetail/CollectionDetailPage";
+import CollectionProvider from "./context/CollectionContext";
+const HomePage = lazy(() => import("./pages/Home/HomePage"));
+const CollectionDetailPage = lazy(() => import("./pages/CollectionDetail/CollectionDetailPage"));
+const AnimeDetailPage = lazy(() => import("./pages/AnimeDetail/AnimeDetailPage"));
+const CollectionPage = lazy(() => import("./pages/Collection/CollectionPage"));
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
@@ -17,16 +18,18 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <CollectionProvider>
-                <BrowserRouter>
-                    <Routes>
-                        <Route element={<Layout />}>
-                            <Route path="/" element={<HomePage />} />
-                            <Route path="/anime/:id" element={<AnimeDetailPage />} />
-                            <Route path="/collections" element={<CollectionPage />} />
-                            <Route path="/collections/:name" element={<CollectionDetailPage />} />
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route element={<Layout />}>
+                                <Route path="/" element={<HomePage />} />
+                                <Route path="/anime/:id" element={<AnimeDetailPage />} />
+                                <Route path="/collections" element={<CollectionPage />} />
+                                <Route path="/collections/:name" element={<CollectionDetailPage />} />
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </Suspense>
             </CollectionProvider>
         </ApolloProvider>
     );
