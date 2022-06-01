@@ -6,7 +6,6 @@ import AnimeCard from "./AnimeCard";
 const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-auto-rows: 400px; 
     grid-gap: 1.5rem;
 `;
 
