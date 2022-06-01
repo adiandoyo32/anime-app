@@ -1,10 +1,82 @@
 /** @jsxImportSource @emotion/react */
+import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { StarIcon } from "@heroicons/react/solid";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 import Anime from "../../../models/Anime";
-import { Card, CardContent, CardImage, CardPoster, CardTitle, Rate } from "../styles/AnimeCard";
+import { useNavigate } from "react-router-dom";
+
+const Card = styled.div`
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+`;
+
+const CardPoster = styled.div`
+    height: 80%;
+    overflow: hidden;
+`;
+
+const CardImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+`;
+
+const CardContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.875rem;
+`;
+
+const CardTitle = styled.p`
+    width: max-content;
+    font-size: 1rem;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-break: break-all;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: red;
+    }
+`;
+
+const CardSubtitle = styled.p`
+    width: max-content;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8a8a8a;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-bottom: 0.5rem;
+`;
+
+const Rate = styled.span`
+    font-size: 1rem;
+    color: #fdcc0d;
+    font-weight: 500;
+`;
 
 interface AnimeCardProps {
     anime: Anime;
@@ -17,15 +89,13 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
     };
 
     return (
-        <Card>
-            <CardPoster onClick={() => handleClick(anime)}>
-                {/* <picture> */}
-                    {/* <source srcSet={anime.coverImage.large} type="image/webp" /> */}
-                    <CardImage src={anime.coverImage.large} alt={anime.title.userPreferred} />
-                {/* </picture> */}
+        <Card  onClick={() => handleClick(anime)}>
+            <CardPoster>
+                <CardImage src={anime.coverImage.large} alt={anime.title.userPreferred} />
             </CardPoster>
             <CardContent>
-                <CardTitle onClick={() => handleClick(anime)}>{anime.title.userPreferred}</CardTitle>
+                <CardTitle>{anime.title.userPreferred}</CardTitle>
+                <CardSubtitle>{anime.seasonYear}</CardSubtitle>
                 <div
                     css={css`
                         display: flex;
@@ -34,14 +104,13 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
                 >
                     <StarIcon
                         css={css`
-                            height: 1rem;
-                            width: 1rem;
+                            height: 1.2rem;
+                            width: 1.2rem;
                             color: #ffc400;
-                            margin-right: 0.2rem;
                         `}
                     />
                     <Rate>
-                        <p>{anime.averageScore}</p>
+                        <span>{anime.averageScore}</span>
                     </Rate>
                 </div>
             </CardContent>
@@ -49,4 +118,4 @@ const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
     );
 };
 
-export default React.memo(AnimeCard);
+export default memo(AnimeCard);

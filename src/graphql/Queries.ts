@@ -20,6 +20,7 @@ export const GET_ANIME_LIST = gql`
                 }
                 genres
                 season
+                seasonYear
                 averageScore
                 coverImage {
                     large
