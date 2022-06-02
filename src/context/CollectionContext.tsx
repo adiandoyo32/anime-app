@@ -51,8 +51,13 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
     };
 
     const saveAnimeToCollection = (anime: Anime, selectedCollectionNames: string[]) => {
-        for (let i = 0; i < collections.length; i++) {
+        outer: for (let i = 0; i < collections.length; i++) {
             if (selectedCollectionNames.includes(collections[i].name)) {
+                for (let j = 0; j < collections[i].animes.length; j++) {
+                    if (collections[i].animes[j].id === anime.id) {
+                        break outer;
+                    }
+                }
                 collections[i].animes.push(anime);
                 setCollections([...collections]);
             }

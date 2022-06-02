@@ -48,7 +48,7 @@ const CardTitle = styled.p`
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     &:hover {
-        color: red;
+        color: #3b82f6;
     }
 `;
 
@@ -105,25 +105,36 @@ const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
                                 font-size: 0.75rem;
                             `}
                         >
-                            {props.anime.seasonYear}
+                            {props.anime.seasonYear ?? "-"}
                         </CardSubtitle>
-                        <div
-                            css={css`
-                                display: flex;
-                                align-items: center;
-                            `}
-                        >
-                            <StarIcon
+                        {props.anime.averageScore ? (
+                            <div
                                 css={css`
-                                    height: 1rem;
-                                    width: 1rem;
-                                    color: #ffc400;
+                                    display: flex;
+                                    align-items: center;
                                 `}
-                            />
-                            <Rate>
-                                <span>{props.anime.averageScore}</span>
-                            </Rate>
-                        </div>
+                            >
+                                <StarIcon
+                                    css={css`
+                                        height: 1rem;
+                                        width: 1rem;
+                                        color: #ffc400;
+                                    `}
+                                />
+                                <Rate>
+                                    <span>{props.anime.averageScore}</span>
+                                </Rate>
+                            </div>
+                        ) : (
+                            <span
+                                css={css`
+                                    color: #8a8a8a;
+                                    font-size: 0.8rem;
+                                `}
+                            >
+                                Score not available
+                            </span>
+                        )}
                     </div>
                 </div>
                 <div>
