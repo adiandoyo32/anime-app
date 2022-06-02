@@ -118,7 +118,17 @@ const AnimeDetailPage = () => {
     return (
         <>
             <Banner>
-                <BannerImage src={anime.bannerImage ?? PlaceHolder} />
+                {anime.bannerImage ? (
+                    <BannerImage src={anime.bannerImage} />
+                ) : (
+                    <BannerImage
+                        css={css`
+                            background-color: #fafafa;
+                            object-fit: contain;
+                        `}
+                        src={PlaceHolder}
+                    />
+                )}
             </Banner>
             <AnimeDetailWrapper>
                 <div

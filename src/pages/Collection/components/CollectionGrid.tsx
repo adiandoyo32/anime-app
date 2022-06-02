@@ -47,14 +47,23 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
                         <CollectionCard
                             key={collection.name}
                             collection={collection}
-                            onRemoveClick={() => onRemoveClick(collection, index)}
+                            onRemoveClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                e.stopPropagation();
+                                onRemoveClick(collection, index)
+                            }}
                             showAction={true}
                         />
                     );
                 })}
             </Grid>
 
-            <Modal close={toggle} show={visible} title={currentCollection?.name ?? ""} confirm={confirmDeleteClick} confirmText="Delete">
+            <Modal
+                close={toggle}
+                show={visible}
+                title={currentCollection?.name ?? ""}
+                confirm={confirmDeleteClick}
+                confirmText="Delete"
+            >
                 <p
                     css={css`
                         font-size: 0.875rem;

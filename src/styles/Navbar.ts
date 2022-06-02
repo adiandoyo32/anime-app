@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const NavbarHeader = styled.header`
-    background-color: rgba(12, 12, 12, 0.9);
+    background-color: rgba(12, 12, 12, 0.7);
     backdrop-filter: blur(5px);
     width: 100%;
     position: fixed;

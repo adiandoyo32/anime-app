@@ -68,7 +68,7 @@ const CardSubtitle = styled.p`
 
 interface CollectionCardProps {
     collection: Collection;
-    onRemoveClick?: () => void;
+    onRemoveClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     showAction?: boolean;
 }
 
@@ -81,7 +81,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onRemoveCli
 
     return (
         <>
-            <Card>
+            <Card onClick={() => handleClick(collection.name)}>
                 <CardImage
                     css={css`
                         width: 8rem;
@@ -107,18 +107,18 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onRemoveCli
                             display: flex;
                         `}
                     >
-                        <Button size="small" onClick={() => handleClick(collection.name)}>
-                            Detail
-                        </Button>
-
                         {showAction && (
                             <>
                                 <span
                                     css={css`
-                                        margin-left: 0.5rem;
+                                        // margin-left: 0.5rem;
                                     `}
                                 />
-                                <Button size="small" color="danger" onClick={onRemoveClick}>
+                                <Button
+                                    size="small"
+                                    color="danger"
+                                    onClick={(e?: React.MouseEvent<HTMLButtonElement>) => onRemoveClick?.(e!)}
+                                >
                                     Delete
                                 </Button>
                             </>

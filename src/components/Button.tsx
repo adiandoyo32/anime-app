@@ -7,7 +7,7 @@ interface ButtonProps {
     css?: Interpolation<Theme>;
     size?: "small" | "medium" | "large";
     color?: "primary" | "secondary" | "danger";
-    onClick?: () => void;
+    onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
     children?: React.ReactNode;
 }
 

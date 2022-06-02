@@ -75,14 +75,14 @@ const Rate = styled.span`
 interface AnimeListItemProps {
     anime: Anime;
     removeAnime?: (index: number) => void;
-    onRemoveClick?: () => void;
+    onRemoveClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
     const navigate = useNavigate();
 
     return (
-        <Card>
+        <Card onClick={() => navigate(`/anime/${props.anime.id}`)}>
             <CardImage
                 css={css`
                     width: 8rem;
@@ -125,20 +125,12 @@ const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div
-                    css={css`
-                        display: flex;
-                    `}
-                >
-                    <Button size="small" onClick={() => navigate(`/anime/${props.anime.id}`)}>
-                        Detail
-                    </Button>
-                    <span
-                        css={css`
-                            margin-left: 0.5rem;
-                        `}
-                    />
-                    <Button size="small" color="danger" onClick={props.onRemoveClick}>
+                <div>
+                    <Button
+                        size="small"
+                        color="danger"
+                        onClick={(e?: React.MouseEvent<HTMLButtonElement>) => props.onRemoveClick?.(e!)}
+                    >
                         Delete
                     </Button>
                 </div>

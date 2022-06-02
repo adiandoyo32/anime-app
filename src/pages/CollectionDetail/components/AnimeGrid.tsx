@@ -29,7 +29,8 @@ const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionInd
     const [currentAnime, setCurrentAnime] = useState<Anime>();
     const currentAnimeIndex = useRef<number>(0);
 
-    const onRemoveClick = (anime: Anime, index: number) => {
+    const onRemoveClick = (e: React.MouseEvent<HTMLButtonElement>, anime: Anime, index: number) => {
+        e.stopPropagation()
         setCurrentAnime(anime);
         currentAnimeIndex.current = index;
         toggle();
@@ -47,7 +48,11 @@ const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionInd
             <Grid>
                 {collection.animes.map((anime, index) => {
                     return (
-                        <AnimeListItem key={index} anime={anime} onRemoveClick={() => onRemoveClick(anime, index)} />
+                        <AnimeListItem
+                            key={index}
+                            anime={anime}
+                            onRemoveClick={(e) => onRemoveClick(e, anime, index)}
+                        />
                     );
                 })}
             </Grid>
