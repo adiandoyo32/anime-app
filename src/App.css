@@ -12,9 +12,9 @@
 }
 
 .pagination {
+  width: max-content;
   margin: 2rem auto;
   padding: 1rem;
-  height: 1.5rem;
   display: flex;
   list-style: none;
   outline: none;
@@ -51,4 +51,12 @@
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
   border-radius: unset;
+}
+
+@media screen and (max-width: 768px) {
+  .pagination {
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0.5rem;
+  }  
 }

@@ -1,9 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import "./App.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CollectionProvider from "./context/CollectionContext";
-// import Layout from "./components/Layout";
 const Layout = lazy(() => import("./components/Layout"));
 const HomePage = lazy(() => import("./pages/Home/HomePage"));
 const CollectionDetailPage = lazy(() => import("./pages/CollectionDetail/CollectionDetailPage"));
@@ -19,7 +18,7 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <CollectionProvider>
-                <Suspense fallback={<div className="asd">Loading...1</div>}>
+                <Suspense fallback={<div>Loading...</div>}>
                     <BrowserRouter>
                         <Routes>
                             <Route element={<Layout />}>

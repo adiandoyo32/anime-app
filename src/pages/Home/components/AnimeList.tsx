@@ -5,8 +5,17 @@ import AnimeCard from "./AnimeCard";
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     grid-gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    @media (min-width: 442px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 600px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 880px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
 `;
 
 interface AnimeListProps {

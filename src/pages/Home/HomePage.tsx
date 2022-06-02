@@ -6,7 +6,6 @@ import Page from "../../models/Page";
 import AnimeList from "./components/AnimeList";
 import HomeWrapper from "./components/HomeWrapper";
 import ReactPaginate from "react-paginate";
-import Button from "../../components/Button";
 
 const HomePage = () => {
   const [animeList, setAnimeList] = useState<Anime[]>([]);
@@ -18,10 +17,6 @@ const HomePage = () => {
       variables: { page: pageNumber + 1 },
     }
   );
-
-  useEffect(() => {
-    getAnimeList();
-  }, []);
 
   useEffect(() => {
     if (data) {
@@ -40,10 +35,12 @@ const HomePage = () => {
 
   return (
     <HomeWrapper>
-      {loading && <div className="asd">Loading...2</div>}
+      {loading && <div>Loading...2</div>}
       {error && <div>Error</div>}
       {data && <AnimeList animeList={animeList} />}
       <ReactPaginate
+        pageRangeDisplayed={2}
+        breakLabel={"..."}
         previousLabel={"<"}
         nextLabel={">"}
         pageCount={pageCount}

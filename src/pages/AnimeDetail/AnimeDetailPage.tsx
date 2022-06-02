@@ -181,7 +181,7 @@ const AnimeDetailPage = () => {
                         ))}
                     </div>
                     <Button onClick={toggle}>Add to Collection</Button>
-                    <Description>{anime.description}</Description>
+                    <Description dangerouslySetInnerHTML={{ __html: anime.description }} />
                 </div>
             </div>
 
