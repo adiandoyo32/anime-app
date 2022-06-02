@@ -200,23 +200,23 @@ const AnimeDetailPage = () => {
 
                         <Description dangerouslySetInnerHTML={{ __html: anime.description }} />
                     </div>
+                </div>
 
-                    <div
-                        css={css`
-                            margin-top: 1rem;
-                        `}
-                    >
-                        <h3>Collection info</h3>
-                        <CollectionGrid>
-                            {storedCollection.length > 0 ? (
-                                storedCollection.map((collection, index) => {
-                                    return <CollectionCard key={index} collection={collection} />;
-                                })
-                            ) : (
-                                <div>No collection found</div>
-                            )}
-                        </CollectionGrid>
-                    </div>
+                <div
+                    css={css`
+                        padding: 2rem;
+                    `}
+                >
+                    <h3>Collection info</h3>
+                    <CollectionGrid>
+                        {storedCollection.length > 0 ? (
+                            storedCollection.map((collection, index) => {
+                                return <CollectionCard key={index} collection={collection} />;
+                            })
+                        ) : (
+                            <div>No collection found</div>
+                        )}
+                    </CollectionGrid>
                 </div>
 
                 <div>
