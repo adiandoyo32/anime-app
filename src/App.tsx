@@ -23,7 +23,7 @@ function App() {
                         <Routes>
                             <Route element={<Layout />}>
                                 <Route path="/" element={<HomePage />} />
-                                <Route path="/anime/:id" element={<AnimeDetailPage />} />
+                                <Route path="/animes/:id" element={<AnimeDetailPage />} />
                                 <Route path="/collections" element={<CollectionPage />} />
                                 <Route path="/collections/:name" element={<CollectionDetailPage />} />
                             </Route>

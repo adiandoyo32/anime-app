@@ -85,7 +85,7 @@ interface AnimeCardProps {
 const AnimeCard: React.FC<AnimeCardProps> = ({ anime }) => {
   const navigate = useNavigate();
   const handleClick = (anime: Anime) => {
-    navigate(`/anime/${anime.id}`);
+    navigate(`/animes/${anime.id}`);
   };
 
   return (

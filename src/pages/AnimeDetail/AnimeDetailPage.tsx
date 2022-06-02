@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { css } from "@emotion/react";
 import { StarIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import Checkbox from "../../components/Checkbox";
 import Modal from "../../components/Modal";
@@ -29,12 +29,15 @@ import Banner from "./components/Banner";
 import BannerImage from "./components/BannerImage";
 import { Empty, PlaceHolder } from "../../images";
 import Loading from "../../components/Loading";
+import HomeWrapper from "../Home/components/HomeWrapper";
+import EmptyState from "../../components/EmptyState";
 
 const AnimeDetailPage = () => {
     const { id } = useParams();
     const { error, loading, data } = useQuery(GET_ANIME, {
         variables: { id: id },
     });
+    const navigate = useNavigate()
     const { collections, saveAnimeToCollection, findExistingCollection, addCollection } = useCollectionContext();
     const { visible, toggle } = useModal();
     const [anime, setAnime] = useState<Anime | null>(null);
@@ -55,8 +58,12 @@ const AnimeDetailPage = () => {
     }, [collections, anime]);
 
     if (loading) return <Loading />;
-    if (error || !data) return <div>Error</div>;
-    if (anime === null) return <div>Anime not found</div>;
+    if (error || !data || anime == null)
+        return (
+            <HomeWrapper>
+                <EmptyState title="Anime not found" description="" actionText="Back to Home" action={() => navigate("/")} />
+            </HomeWrapper>
+        );
 
     const onCollectionCheck = (collection: Collection, e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {

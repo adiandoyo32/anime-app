@@ -83,7 +83,7 @@ const AnimeListItem: React.FC<AnimeListItemProps> = (props) => {
     const navigate = useNavigate();
 
     return (
-        <Card onClick={() => navigate(`/anime/${props.anime.id}`)}>
+        <Card onClick={() => navigate(`/animes/${props.anime.id}`)}>
             <CardImage
                 css={css`
                     width: 8rem;
