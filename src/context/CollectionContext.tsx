@@ -52,14 +52,12 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
     };
 
     const saveAnimeToCollection = (anime: Anime, selectedCollectionNames: string[]) => {
-        outer: for (let i = 0; i < collections.length; i++) {
+        for (let i = 0; i < collections.length; i++) {
             if (selectedCollectionNames.includes(collections[i].name)) {
-                for (let j = 0; j < collections[i].animes.length; j++) {
-                    if (collections[i].animes[j].id === anime.id) {
-                        break outer;
-                    }
+                const found = collections[i].animes.find((item) => item.id === anime.id);
+                if (!found) {
+                    collections[i].animes.push(anime);
                 }
-                collections[i].animes.push(anime);
                 setCollections([...collections]);
             }
         }
@@ -68,7 +66,7 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
     const updateCollectionName = (collectionIndex: number, collectionName: string) => {
         collections[collectionIndex].name = collectionName;
         setCollections([...collections]);
-    }
+    };
 
     const deleteCollectionByIndex = (collectionIndex: number, collection: Collection) => {
         const arr = [...collections];
