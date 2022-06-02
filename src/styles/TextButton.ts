@@ -1,5 +1,4 @@
-import { Theme } from "@emotion/react";
-import styled, { Interpolation } from "@emotion/styled";
+import styled from "@emotion/styled";
 
 interface TextButtonStyledProps {
   size?: "large" | "medium" | "small";

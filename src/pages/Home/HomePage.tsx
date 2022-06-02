@@ -1,4 +1,4 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { GET_ANIME_LIST } from "../../graphql/Queries";
 import Anime from "../../models/Anime";

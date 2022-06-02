@@ -30,6 +30,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ title, description, action, act
                         height: 100px;
                     `}
                     src={Empty}
+                    alt="Empty"
                 />
             </div>
             <h2

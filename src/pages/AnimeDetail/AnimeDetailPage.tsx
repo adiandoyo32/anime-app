@@ -27,7 +27,7 @@ import CollectionGrid from "./components/CollectionGrid";
 import { validateCollectionName } from "../../utils/utils";
 import Banner from "./components/Banner";
 import BannerImage from "./components/BannerImage";
-import { Empty, PlaceHolder } from "../../images";
+import { PlaceHolder } from "../../images";
 import Loading from "../../components/Loading";
 import HomeWrapper from "../Home/components/HomeWrapper";
 import EmptyState from "../../components/EmptyState";

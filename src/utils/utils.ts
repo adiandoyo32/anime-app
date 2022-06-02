@@ -6,7 +6,7 @@ export const validateCollectionName = (name: string, findExistingCollection: (na
         throw new Error("Collection name must not be empty");
     }
 
-    const regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    const regex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
     if (regex.test(collectionName)) {
         throw new Error("Collection name must not contain special characters");
     }

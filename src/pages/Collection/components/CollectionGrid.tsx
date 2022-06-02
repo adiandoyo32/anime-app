@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import CollectionCard from "../../../components/CollectionCard";

@@ -28,8 +28,8 @@ const CollectionDetailPage = () => {
     const [error, setError] = useState<string>("");
 
     useEffect(() => {
-        collections.map((collection, index) => {
-            if (collection.name == name) {
+        collections.forEach((collection, index) => {
+            if (collection.name === name) {
                 collectionIndex.current = index;
                 setCollection(collection);
                 setCollectionName(collection.name);

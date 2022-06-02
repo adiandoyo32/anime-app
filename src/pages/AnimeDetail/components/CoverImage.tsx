@@ -14,7 +14,7 @@ const CoverImage: React.FC<CoverImageProps> = ({ imageUrl }) => {
             <img css={css`
                 width: 100%;
                 object-fit: cover;
-            `} src={imageUrl} />
+            `} src={imageUrl} alt="" />
         </div>
     );
 };

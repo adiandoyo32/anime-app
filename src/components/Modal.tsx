@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import IconButton from "./IconButton";
 import { XIcon } from "@heroicons/react/solid";
