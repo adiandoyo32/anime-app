@@ -7,16 +7,17 @@ import { useCollectionContext } from "../../../context/CollectionContext";
 import useModal from "../../../hooks/useModal";
 import Anime from "../../../models/Anime";
 import Collection from "../../../models/Collection";
-import AnimeListItem from "./AnimeListItem";
+import AnimeListItem from "./AnimeItem";
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr;
     grid-gap: 1rem;
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    @media (min-width: 800px) {
+        grid-template-columns: 1fr 1fr;
     }
 `;
+
 interface AnimeListGridProps {
     collectionIndex: number;
     collection: Collection;

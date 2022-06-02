@@ -6,8 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCollectionContext } from "../../context/CollectionContext";
 import Collection from "../../models/Collection";
 import HomeWrapper from "../Home/components/HomeWrapper";
-import AnimeListGrid from "./components/AnimeListGrid";
-import EmptyState from "./components/EmptyState";
+import AnimeListGrid from "./components/AnimeGrid";
+import EmptyState from "../../components/EmptyState";
 
 const CollectionDetailPage = () => {
     const navigate = useNavigate();

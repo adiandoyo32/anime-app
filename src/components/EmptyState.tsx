@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import Button from "../../../components/Button";
-import { Empty } from "../../../images";
+import Button from "./Button";
+import { Empty } from "../images";
 
 interface EmptyStateProps {
     title: string;

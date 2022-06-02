@@ -10,7 +10,7 @@ import Modal from "../../components/Modal";
 import { useCollectionContext } from "../../context/CollectionContext";
 import useModal from "../../hooks/useModal";
 import { validateCollectionName } from "../../utils/utils";
-import EmptyState from "../CollectionDetail/components/EmptyState";
+import EmptyState from "../../components/EmptyState";
 import HomeWrapper from "../Home/components/HomeWrapper";
 import CollectionGrid from "./components/CollectionGrid";
 
