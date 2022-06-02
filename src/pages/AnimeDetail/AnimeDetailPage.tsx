@@ -146,16 +146,20 @@ const AnimeDetailPage = () => {
         >
           <div
             css={css`
-              display: grid;
-              grid-template-columns: 100px auto;
-              align-items: end;
-              @media (min-width: 800px) {
-                grid-template-columns: 1fr;
+              @media (max-width: 800px) {
+                display: grid;
+                grid-gap: 1rem;
+                grid-template-columns: 100px auto;
+                align-items: end;
               }
             `}
           >
             <CoverImage imageUrl={anime.coverImage.large} />
-            <div>
+            <div
+              css={css`
+                margin: 0.5rem 0;
+              `}
+            >
               <Button onClick={toggle}>Add to Collection</Button>
             </div>
           </div>
