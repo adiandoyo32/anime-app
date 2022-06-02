@@ -9,12 +9,7 @@ interface CoverImageProps {
 const CoverImage: React.FC<CoverImageProps> = ({ imageUrl }) => {
     return (
         <div css={css`
-            margin: auto;
-            width: 80%;
-            @media (min-width: 400px) {
-                margin: 0;
-                width: 100%;
-            }
+            margin-top: -140px;
         `}>
             <img css={css`
                 width: 100%;

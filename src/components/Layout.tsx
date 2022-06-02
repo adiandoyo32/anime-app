@@ -3,9 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const Main = styled.main`
-    margin-top: 4rem;
-    padding: 1.5rem;
-   
+    // margin-top: 4rem;
     min-height: calc(100vh - 4rem);
     background-color: #fff;
     // background-color: #f1f1f1;
