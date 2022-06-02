@@ -69,11 +69,12 @@ const CardSubtitle = styled.p`
 
 interface CollectionCardProps {
     collection: Collection;
+    onEditClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     onRemoveClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     showAction?: boolean;
 }
 
-const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onRemoveClick, showAction }) => {
+const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onEditClick, onRemoveClick, showAction }) => {
     const navigate = useNavigate();
 
     const handleClick = (collectionName: string) => {
@@ -110,9 +111,15 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ collection, onRemoveCli
                     >
                         {showAction && (
                             <>
+                                <Button
+                                    size="small"
+                                    onClick={(e?: React.MouseEvent<HTMLButtonElement>) => onEditClick?.(e!)}
+                                >
+                                    Edit
+                                </Button>
                                 <span
                                     css={css`
-                                        // margin-left: 0.5rem;
+                                        margin-left: 0.5rem;
                                     `}
                                 />
                                 <Button

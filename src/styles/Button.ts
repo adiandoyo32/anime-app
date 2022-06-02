@@ -24,7 +24,7 @@ const resolveSize = (size?: string) => {
         case "large":
             return "padding: 0.5rem 1rem;";
         case "small":
-            return "padding: 0.25rem 0.5rem; font-size: 0.75rem";
+            return "padding: 0.3rem 0.6rem; font-size: 0.75rem";
         default:
             return "padding: 0.5rem 1rem;";
     }

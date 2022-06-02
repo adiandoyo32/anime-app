@@ -24,7 +24,7 @@ interface AnimeListGridProps {
 }
 
 const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionIndex }) => {
-    const { updateCollectionByIndex } = useCollectionContext();
+    const { deleteCollectionByIndex } = useCollectionContext();
     const { toggle, visible } = useModal();
     const [currentAnime, setCurrentAnime] = useState<Anime>();
     const currentAnimeIndex = useRef<number>(0);
@@ -39,7 +39,7 @@ const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionInd
     const confirmDelete = (values: boolean) => {
         if (!values) return;
         collection.animes.splice(currentAnimeIndex.current, 1);
-        updateCollectionByIndex(collectionIndex, collection);
+        deleteCollectionByIndex(collectionIndex, collection);
         toggle();
     };
 

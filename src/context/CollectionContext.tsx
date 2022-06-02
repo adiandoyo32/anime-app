@@ -9,7 +9,8 @@ interface CollectionContextInterface {
     addCollection: (collectionName: string) => void;
     removeCollection: (index: number) => void;
     saveAnimeToCollection: (anime: Anime, selectedCollectionNames: string[]) => void;
-    updateCollectionByIndex: (collectionIndex: number, collection: Collection) => void;
+    updateCollectionName: (collectionIndex: number, collectionName: string) => void;
+    deleteCollectionByIndex: (collectionIndex: number, collection: Collection) => void;
 }
 
 export const CollectionContext = createContext({} as CollectionContextInterface);
@@ -64,7 +65,12 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
         }
     };
 
-    const updateCollectionByIndex = (collectionIndex: number, collection: Collection) => {
+    const updateCollectionName = (collectionIndex: number, collectionName: string) => {
+        collections[collectionIndex].name = collectionName;
+        setCollections([...collections]);
+    }
+
+    const deleteCollectionByIndex = (collectionIndex: number, collection: Collection) => {
         const arr = [...collections];
         arr.splice(collectionIndex, 1, collection);
         setCollections(arr);
@@ -78,7 +84,8 @@ const CollectionProvider: React.FC<CollectionContextProps> = (props) => {
                 addCollection,
                 removeCollection,
                 saveAnimeToCollection,
-                updateCollectionByIndex,
+                updateCollectionName,
+                deleteCollectionByIndex,
             }}
         >
             {props.children}

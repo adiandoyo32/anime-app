@@ -5,6 +5,7 @@ import Button from "./Button";
 import { Empty } from "../images";
 
 interface EmptyStateProps {
+    css?: any;
     title: string;
     description: string;
     action?: () => void;
