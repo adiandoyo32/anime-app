@@ -2,9 +2,11 @@ import styled from '@emotion/styled'
 
 const BannerImage = styled.img`
     width: 100%;
-    height: 400px;
+    height: 240px;
     object-fit: cover;
-    background-color: #ffc400;
+    @media (min-width: 760px) {
+        height: 440px;
+    }
 `
 
 export default BannerImage

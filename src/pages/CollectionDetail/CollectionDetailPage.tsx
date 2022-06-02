@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCollectionContext } from "../../context/CollectionContext";
 import Collection from "../../models/Collection";
+import HomeWrapper from "../Home/components/HomeWrapper";
 import AnimeListGrid from "./components/AnimeListGrid";
 import EmptyState from "./components/EmptyState";
 
@@ -27,7 +28,7 @@ const CollectionDetailPage = () => {
     if (!collection) return <h3>Collection not found</h3>;
 
     return (
-        <>
+        <HomeWrapper>
             <h3
                 css={css`
                     margin-bottom: 0.5rem;
@@ -45,7 +46,7 @@ const CollectionDetailPage = () => {
                     actionText="Add more animes"
                 />
             )}
-        </>
+        </HomeWrapper>
     );
 };
 
