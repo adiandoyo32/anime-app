@@ -28,6 +28,7 @@ import { validateCollectionName } from "../../utils/utils";
 import Banner from "./components/Banner";
 import BannerImage from "./components/BannerImage";
 import { Empty, PlaceHolder } from "../../images";
+import Loading from "../../components/Loading";
 
 const AnimeDetailPage = () => {
     const { id } = useParams();
@@ -53,7 +54,7 @@ const AnimeDetailPage = () => {
         if (anime) resolveCollectionInfo(anime);
     }, [collections, anime]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Loading />;
     if (error || !data) return <div>Error</div>;
     if (anime === null) return <div>Anime not found</div>;
 

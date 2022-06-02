@@ -6,6 +6,7 @@ import Page from "../../models/Page";
 import AnimeList from "./components/AnimeList";
 import HomeWrapper from "./components/HomeWrapper";
 import ReactPaginate from "react-paginate";
+import Loading from "../../components/Loading";
 
 const HomePage = () => {
   const [animeList, setAnimeList] = useState<Anime[]>([]);
@@ -35,7 +36,7 @@ const HomePage = () => {
 
   return (
     <HomeWrapper>
-      {loading && <div>Loading...2</div>}
+      {loading && <Loading />}
       {error && <div>Error</div>}
       {data && <AnimeList animeList={animeList} />}
       <ReactPaginate

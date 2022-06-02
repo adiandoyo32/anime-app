@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
 export const NavbarHeader = styled.header`
-    background-color: rgb(29, 29, 29);
+    background-color: rgba(12, 12, 12, 0.9);
+    backdrop-filter: blur(5px);
     width: 100%;
     position: fixed;
     top: 0;
@@ -44,5 +45,11 @@ export const NavbarListItem = styled.li`
         color: inherit;
         margin: 0 1.25rem;
         transition: 0.3s ease all;
+        font-size: 0.875rem;
+    }
+    @media (min-width: 600px) {
+        a {
+            font-size: 1rem;
+        }
     }
 `;

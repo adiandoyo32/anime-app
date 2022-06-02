@@ -18,7 +18,7 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <CollectionProvider>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div></div>}>
                     <BrowserRouter>
                         <Routes>
                             <Route element={<Layout />}>
