@@ -104,7 +104,7 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
             <Modal
                 close={toggle}
                 show={visible}
-                title={currentCollection?.name ?? ""}
+                title={currentAction === CollectionAction.Delete ? `Delete ${currentCollection?.name}` : `Edit ${currentCollection?.name}`}
                 confirm={currentAction === CollectionAction.Delete ? onConfirmDeleteClick : onUpdateCollectionClick}
                 confirmText={currentAction === CollectionAction.Delete ? "Delete" : "Save"}
             >

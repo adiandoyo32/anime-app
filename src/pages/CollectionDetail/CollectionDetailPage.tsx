@@ -94,7 +94,7 @@ const CollectionDetailPage = () => {
             <Modal
                 close={toggle}
                 show={visible}
-                title={`Update ${collection.name}`}
+                title={`Edit ${collection.name}`}
                 confirm={onUpdateCollectionClick}
                 confirmText="Save"
             >

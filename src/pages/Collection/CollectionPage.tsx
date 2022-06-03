@@ -64,7 +64,6 @@ const CollectionPage = () => {
                 ) : (
                     <EmptyState
                         title="Collection is Empty"
-                        description=""
                         action={() => onAddCollectionClick()}
                         actionText="New Collection"
                     />

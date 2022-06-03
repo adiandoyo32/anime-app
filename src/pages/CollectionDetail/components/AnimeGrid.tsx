@@ -60,7 +60,7 @@ const AnimeListGrid: React.FC<AnimeListGridProps> = ({ collection, collectionInd
             <Modal
                 close={toggle}
                 show={visible}
-                title={currentAnime?.title.userPreferred ?? ""}
+                title={`Delete ${currentAnime?.title.userPreferred ?? ""}`}
                 confirm={confirmDelete}
                 confirmText="Delete"
             >

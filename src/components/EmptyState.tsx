@@ -7,7 +7,7 @@ import { Empty } from "../images";
 interface EmptyStateProps {
     css?: any;
     title: string;
-    description: string;
+    description?: string;
     action?: () => void;
     actionText: string;
 }
@@ -51,7 +51,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ title, description, action, act
             >
                 {description}
             </p>
-            <Button onClick={action}>{actionText}</Button>
+            <Button data-testid="empty-button" onClick={action}>{actionText}</Button>
         </div>
     );
 };
