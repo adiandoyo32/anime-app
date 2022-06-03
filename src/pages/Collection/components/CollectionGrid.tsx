@@ -43,7 +43,7 @@ const CollectionGrid: React.FC<CollectionGridProps> = ({ collections }) => {
     const onCollectionNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setCollectionName(() => e.target.value);
-        if (collectionName) setError("");
+        setError("");
     };
 
     const onRemoveClick = (e: React.MouseEvent<HTMLButtonElement>, collection: Collection, index: number) => {

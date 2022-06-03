@@ -96,7 +96,7 @@ const AnimeDetailPage = () => {
     const onCollectionNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setCollectionName(() => e.target.value);
-        if (collectionName) setErrorMessage("");
+        setErrorMessage("");
     };
 
     const toggleIsAddCollection = () => {

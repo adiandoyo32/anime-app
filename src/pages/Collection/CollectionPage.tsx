@@ -43,7 +43,7 @@ const CollectionPage = () => {
     const onCollectionNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setCollectionName(() => e.target.value);
-        if (collectionName) setError("");
+        setError("");
     };
 
     return (
